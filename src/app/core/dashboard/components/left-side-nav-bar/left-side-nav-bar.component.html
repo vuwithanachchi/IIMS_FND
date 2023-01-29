@@ -1,0 +1,36 @@
+<mat-sidenav-container #sidenavContainer class="shadow-none" style="height: 91.5%;">
+  <mat-sidenav [opened]="navState" class="bg-skin-secondary shadow-2xl" mode="side">
+    <mat-nav-list >
+
+      <mat-list-item [routerLink]="'./homePage'" role="listitem" routerLinkActive="buttonActive">
+        <fa-icon [icon]="faHome" class="side-btn-icon "></fa-icon>&nbsp;Home
+      </mat-list-item>
+      <mat-list-item [routerLink]="'./manageItems'" role="listitem" routerLinkActive="buttonActive">
+        <fa-icon [icon]="faLaptopHouse" class="side-btn-icon "></fa-icon>&nbsp;Manage Components
+      </mat-list-item>
+      <mat-list-item [routerLink]="'./order'" role="listitem" routerLinkActive="buttonActive">
+        <fa-icon [icon]="faShoppingCart" class="side-btn-icon "></fa-icon>&nbsp;Manage Orders
+      </mat-list-item>
+      <mat-list-item [routerLink]="'./payment'" role="listitem" routerLinkActive="buttonActive">
+        <fa-icon [icon]="faMoneyBill" class="side-btn-icon "></fa-icon>&nbsp;Manage Payments
+      </mat-list-item>
+      <mat-list-item [routerLink]="'./ship'" role="listitem" routerLinkActive="buttonActive">
+        <fa-icon [icon]="faTruck" class="side-btn-icon "></fa-icon>&nbsp;Manage Shipments
+      </mat-list-item>
+      <mat-list-item [routerLink]="'./chat'" role="listitem" routerLinkActive="buttonActive">
+        <fa-icon [icon]="faComment" class="side-btn-icon "></fa-icon>&nbsp;Chat
+      </mat-list-item>
+      <mat-list-item [routerLink]="'./statics'" role="listitem" routerLinkActive="buttonActive">
+        <fa-icon [icon]="faChartBar" class="side-btn-icon "></fa-icon>&nbsp;Statics
+      </mat-list-item>
+
+    </mat-nav-list>
+
+
+  </mat-sidenav>
+  <mat-sidenav-content [@routeAnimations]="getRouteAnimationData(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+

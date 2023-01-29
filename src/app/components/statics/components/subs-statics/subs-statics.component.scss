@@ -1,0 +1,17 @@
+.m-crd-wrapper{
+  border:3px solid #3398DB; padding: 15px; border-radius: 8px; width: 593.52px;
+  height: 330px;
+}
+
+.m-crd-wrapper-2{
+  border:3px solid #3398DB; padding: 15px; border-radius: 8px;;
+}
+::ng-deep .alert-body {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--bg-form);
+  padding: 0.5rem;
+}

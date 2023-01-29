@@ -1,0 +1,21 @@
+<div class="alert-header mat-elevation-z1">
+  <div></div>
+  <div class="alert-header-title ">
+    <span>Item Statics</span>
+  </div>
+  <div></div>
+</div>
+
+<div class="form-table mt-4 p-4">
+  <div class="m-crd-wrapper-2">
+    <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [type]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
+</div>
+

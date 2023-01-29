@@ -1,0 +1,156 @@
+<div  class="form-main-bg-1">
+  <div class="form-body-1">
+
+    <div class="container cont-1">
+      <div class="box">
+
+        <div class="title">
+          <span class="block"></span>
+          <h4><mat-icon class="me-3">shopping_cart</mat-icon>All Orders<span></span></h4>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--==================================================================================================-->
+
+<div class="form-main-bg" (keyup)="Test($event)">
+  <div class="form-body ">
+
+    <div  class="form-header">
+      <div class="form-header-content">
+        <div class="form-header-title" >
+          All Orders
+        </div>
+        <form class="flex" [formGroup]="filterComplaintsForm" (ngSubmit)="refreshTable()">
+
+        </form>
+      </div>
+    </div>
+    <div>
+      <div>
+
+        <table class="form-table" mat-table [dataSource]="dataSource" matSort>
+          <!-- Action Column -->
+
+          <ng-container matColumnDef="orderid">
+            <th mat-header-cell class="form-table-header" *matHeaderCellDef >Order Id</th>
+            <td mat-cell class="form-table-column" *matCellDef="let row" > {{(row.orderid)}} </td>
+            <td mat-cell *matCellDef="let row" class="form-table-column"
+                appHighlight
+
+                [text]="row?.orderid"
+                classToApply="txt-highlight"></td>
+          </ng-container>
+
+          <ng-container matColumnDef="userid">
+            <th mat-header-cell class="form-table-header" *matHeaderCellDef >User Id</th>
+            <td mat-cell *matCellDef="let row" class="form-table-column"
+                appHighlight
+
+                [text]="row?.userid"
+                classToApply="txt-highlight"></td>
+          </ng-container>
+
+          <ng-container matColumnDef="orderdate">
+            <th mat-header-cell class="form-table-header" *matHeaderCellDef >Order Date</th>
+            <td mat-cell *matCellDef="let row" class="form-table-column"
+                appHighlight
+
+                [text]="row?.orderdate"
+                classToApply="txt-highlight"></td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="orderamount">
+            <th mat-header-cell class="form-table-header" *matHeaderCellDef >Order Amount</th>
+            <td mat-cell *matCellDef="let row" class="form-table-column"
+                appHighlight
+
+                [text]="row?.orderamount"
+                classToApply="txt-highlight"></td>
+          </ng-container>
+
+          <ng-container matColumnDef="orderstatus">
+            <th mat-header-cell class="form-table-header" *matHeaderCellDef >Order Status</th>
+            <td mat-cell *matCellDef="let row" class="form-table-column"
+                appHighlight
+
+                [text]="row?.orderstatus"
+                classToApply="txt-highlight"></td>
+          </ng-container>
+
+          <ng-container matColumnDef="sippingaddress">
+            <th mat-header-cell class="form-table-header" *matHeaderCellDef >Shipping Address</th>
+            <td mat-cell *matCellDef="let row" class="form-table-column"
+                appHighlight
+
+                [text]="row?.sippingaddress"
+                classToApply="txt-highlight"></td>
+          </ng-container>
+
+          <ng-container matColumnDef="paymentmethod">
+            <th mat-header-cell class="form-table-header" *matHeaderCellDef >Payment Method</th>
+            <td mat-cell *matCellDef="let row" class="form-table-column"
+                appHighlight
+
+                [text]="row?.paymentmethod"
+                classToApply="txt-highlight"></td>
+          </ng-container>
+
+          <ng-container matColumnDef="paymentstatus">
+            <th mat-header-cell class="form-table-header" *matHeaderCellDef >Payment Status</th>
+            <td mat-cell *matCellDef="let row" class="form-table-column"
+                appHighlight
+
+                [text]="row?.paymentstatus"
+                classToApply="txt-highlight"></td>
+          </ng-container>
+
+          <ng-container matColumnDef="action" >
+            <th mat-header-cell class="form-table-header" *matHeaderCellDef > Action</th>
+            <td mat-cell class="form-table-column" *matCellDef="let row">
+
+              <div id="buttons" class="d-flex flex-row justify-evenly align-items-center">
+                <div>
+                  <button mat-mini-fab class="btn1-colour" (click)="addPayment(row)"  aria-label="Example icon button with a menu icon">
+                    <mat-icon>payments</mat-icon>
+                  </button>
+                </div>
+                <div>
+                  <button mat-mini-fab class="btn2-colour" (click)="updateComplaint(row)" aria-label="Example icon button with a menu icon">
+                    <mat-icon>border_color</mat-icon>
+                  </button>
+                </div>
+                <div>
+                  <button mat-mini-fab class="btn3-colour" (click)="deleteComplaint(row)" aria-label="Example icon button with a menu icon">
+                    <mat-icon>delete_sweep</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </td>
+
+          </ng-container>
+
+          <tr id="table" mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+              [ngStyle]="{'background-color': row.status==='INACTIVATED' ? '#ffc4c4' : '' }"></tr>
+
+        </table>
+      </div>
+      <mat-toolbar class="mat-toolbar-table bg-skin-ternary text-skin-primary rounded-full">
+        <mat-toolbar-row class="bg-skin-ternary text-skin-primary rounded">
+          <label >page :</label>
+          <input [value]="paginator.pageIndex+1" #page (keyup.enter)="pageNavigate(page.value)"
+                 class="bg-skin-ternary text-skin-primary">
+          <label >/{{pageCount}}</label>
+          <span id="spacer"></span>
+          <mat-paginator class="bg-skin-ternary text-skin-primary"  #paginator [pageSizeOptions]="pageSizeOptions"  (page)="tempPageEvent=getServerData($event)"
+                         showFirstLastButtons ></mat-paginator>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+  </div>
+
+

@@ -1,0 +1,57 @@
+<div class="form-main-bg" (keyup)="Test($event)">
+  <div class="form-body ">
+
+    <div  class="form-header">
+      <div class="form-header-content">
+        <div class="form-header-title" >
+          All Components
+        </div>
+        <form class="flex" [formGroup]="filterDetailsForm" (ngSubmit)="refreshTable()">
+          <div class="form-header-search form-header-label">
+            <label for="search-filed">
+              <mat-icon>search</mat-icon>
+            </label>
+            <input type="text" id="search-filed"  placeholder="Search" formControlName="searchKeyWord"
+                   (keydown)="search.next($event)">
+          </div>
+          <div class="form-header-filters form-header-label">
+            <span>Filter by:&nbsp;</span>
+            <mat-select formControlName="filter" (ngModelChange)="refreshTable()" #filterSelect>
+              <mat-option *ngFor="let filter of filters" [value]="filter.key">
+                {{filter.value}}
+              </mat-option>
+            </mat-select>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div>
+      <section>
+        <div class="cards-list " >
+          <div *ngFor="let items of itemDetails">
+            <div class="card" (click)="viewDetails(items.componetID)">
+              <div class="card_image"> <img [src]='"https://iphenlk.com/wp-content/uploads/iims_webapp_images/"+items.imageURL' /> </div>
+              <div class="card_title title-white">
+                <p appHighlight style="color: black" classToApply="txt-highlight"
+                   [searchedWords]="filterSelect.value==='ALL' || filterSelect.value==='NAME'?searchedWords:['']"
+                   [text]="items.componetName"
+                ></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <mat-toolbar class="mat-toolbar-table bg-skin-ternary text-skin-primary rounded-full">
+        <mat-toolbar-row class="bg-skin-ternary text-skin-primary rounded">
+          <label >page :</label>
+          <input [value]="paginator.pageIndex+1" #page (keyup.enter)="pageNavigate(page.value)"
+                 class="bg-skin-ternary text-skin-primary">
+          <label >/{{pageCount}}</label>
+          <span id="spacer"></span>
+          <mat-paginator class="bg-skin-ternary text-skin-primary"  #paginator [pageSizeOptions]="pageSizeOptions"  (page)="tempPageEvent=getServerData($event)"
+                         showFirstLastButtons ></mat-paginator>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+  </div>
