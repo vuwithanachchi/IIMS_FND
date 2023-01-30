@@ -24,7 +24,7 @@ export class SubStaticsComponent implements OnInit {
     this.getDaughnutTypes()
   }
 
-  public doughnutChartLabels: string[] = ['Organic-Products', 'Chemical-Products', 'Both-Products'];
+  public doughnutChartLabels: string[] = ['All-Products', 'Ordered-Products', 'Shipped-Products'];
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels,
     datasets: [

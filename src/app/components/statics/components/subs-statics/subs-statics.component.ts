@@ -63,7 +63,7 @@ export class SubsStaticsComponent implements OnInit {
   ];
 
   public barChartData: ChartData<'bar'>  = {
-    labels: [ 'Organic', 'Chemical', 'Both' ],
+    labels: [ 'All', 'Ordered', 'Shipped' ],
     datasets: [
       { data: [ 20, 20, 20], label: 'Item Usage ', backgroundColor: ['rgba(20, 80, 219,0.6)','rgba(52, 152, 219,0.6)',], hoverBackgroundColor:['rgba(0, 17, 60,1)',]}
     ]
